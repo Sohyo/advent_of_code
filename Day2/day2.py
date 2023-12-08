@@ -20,7 +20,7 @@ def get_num_of_colour_cube(str_line, colour):
 
 
 # get input - Game and cubes
-text_input = "input1.txt"
+text_input = "test1.txt"
 input_lines = read_file_by_line(text_input)
 
 game_dictionary = {}
@@ -41,4 +41,18 @@ for game_num, game_colours in game_dictionary.items():
     if not any(game_colours[colour] > elf_dictionary[colour] for colour in colours_cubes):
         result += game_num
 
-print(result)
+### Part 2 ###
+
+part2_final_result = 0
+for game in game_dictionary.values():
+    multiply_cube_nums = 1
+    for cube in game.values():
+        multiply_cube_nums *= cube
+    part2_final_result += multiply_cube_nums
+print(part2_final_result)
+
+
+## another option :P
+
+from math import prod
+sum(prod(max_cube_per_color.values()) for max_cube_per_color in game_dictionary.values())
